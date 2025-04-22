@@ -2,7 +2,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const fs = require("fs");
 const { OpenAI } = require("openai");  // Correct import for the latest OpenAI package
-const puppeteer = require("puppeteer");
+//const puppeteer = require("puppeteer");
 const { v4: uuidv4 } = require("uuid");
 require('dotenv').config();
 const puppeteer = require('puppeteer-core');
