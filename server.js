@@ -5,6 +5,7 @@ const { OpenAI } = require("openai");  // Correct import for the latest OpenAI p
 const puppeteer = require("puppeteer");
 const { v4: uuidv4 } = require("uuid");
 require('dotenv').config();
+const puppeteer = require('puppeteer-core');
 
 
 const app = express();
@@ -57,11 +58,14 @@ app.post("/generate-ui-mockup", async (req, res) => {
     const imageId = uuidv4();
     const imagePath = `static/${imageId}.png`;
 
+    //const puppeteer = require('puppeteer-core');
+
     const browser = await puppeteer.launch({
-      executablePath: process.env.PUPPETEER_EXECUTABLE_PATH || '/app/.apt/usr/bin/google-chrome',
-      args: ['--no-sandbox', '--disable-setuid-sandbox'],
+      executablePath: '/app/.apt/usr/bin/google-chrome',
       headless: true,
+      args: ['--no-sandbox', '--disable-setuid-sandbox'],
     });
+    
     const page = await browser.newPage();
     await page.setContent(fullHtml);
     await page.setViewport({ width: 400, height: 600 });
