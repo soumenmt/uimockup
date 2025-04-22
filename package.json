@@ -19,5 +19,8 @@
     "openai": "^4.95.1",
     "puppeteer": "^24.6.1",
     "uuid": "^11.1.0"
+  },
+  "engines": {
+    "node": "22.x"
   }
 }
