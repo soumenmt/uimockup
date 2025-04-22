@@ -61,7 +61,7 @@ app.post("/generate-ui-mockup", async (req, res) => {
     //const puppeteer = require('puppeteer-core');
 
     const browser = await puppeteer.launch({
-      executablePath: '/app/.apt/usr/bin/google-chrome',
+      executablePath: '/app/.chrome-for-testing/chrome-linux64/chrome',
       headless: true,
       args: ['--no-sandbox', '--disable-setuid-sandbox'],
     });
