@@ -10,6 +10,7 @@ const puppeteer = require('puppeteer-core');
 
 const app = express();
 const PORT = process.env.PORT;
+app.enable('trust proxy');
 app.use(bodyParser.json());
 app.use("/static", express.static("static")); // serve images
 
@@ -71,10 +72,11 @@ app.post("/generate-ui-mockup", async (req, res) => {
     await page.setViewport({ width: 400, height: 600 });
     await page.screenshot({ path: imagePath });
     await browser.close();
+    const imageUrl = `${req.protocol}://${req.get('host')}/static/${imageId}.png`;
 
     // 3. Send response
     res.json({
-      image_url: `http://localhost:${PORT}/${imagePath}`,
+      image_url: imageUrl,
       html: htmlPart,
       css: cssPart,
     });
